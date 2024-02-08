@@ -21,7 +21,10 @@ function App() {
   };
 
   const swap = () =>{
-    
+      setFrom(to)
+      setTo(from)
+      setConvertedAmount(amount)
+      setAmount(convertedAmount)
   }
 
   return (
@@ -46,9 +49,9 @@ function App() {
                   label='From'
                   amount={amount}
                   currencyOptions={options}
-                  onCurrencyChange={(currency)=> setFrom(currency)}
                   selectCurrency={from}
                   onAmountChange={(amount)=>setAmount(amount)}
+                  onCurrencyChange={(currency)=> setFrom(currency)}
                 />
     
               </div>
@@ -56,6 +59,7 @@ function App() {
                 <button
                   type="button"
                   className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5"
+                  onClick={swap}
                 >
                   swap
                 </button>
@@ -64,9 +68,10 @@ function App() {
               <InputBox 
                   label='To'
                   amount={convertedAmount}
-                  onCurrencyChange={(currency)=> setTo(currency)}
                   selectCurrency={to}
                   currencyOptions={options}
+                  onCurrencyChange={(currency)=> setTo(currency)}
+                  onAmountChange={(amount)=>setAmount(amount)}
                 />
 
               </div>
