@@ -1,20 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
+function useCurrencyInfo(currency) {
 
-function useInfo({
-    Options,
-    Currency,
-    From,
-    To,
-}) {
-    const [Data, setData] = useState();
-    
-    fetch('https://open.er-api.com/v6/latest/From')
-    .then((response) => response.json()).then((data)=>{
-        setData(data);
-    })
+    const [data, setData] = useState({})
 
-    return Data
+    useEffect(() => {
+        fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${currency}.json`)
+            .then((res) => res.json())
+            .then((res) => setData(res[currency]))
+    }, [currency])
+
+    return data
 }
 
-export default useInfo
+export default useCurrencyInfo;
