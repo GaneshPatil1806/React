@@ -1,0 +1,4 @@
+a tag reloads whole page
+
+diff between link and navlink
+- navlink have more features

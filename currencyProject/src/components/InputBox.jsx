@@ -16,6 +16,10 @@ function InputBox({
     const amountId = useId();
     // used for creating diff id
 
+    function handleFocus(e){
+        e.target.select()
+    }
+
     return (
         <div className={`bg-white p-3 rounded-lg text-sm flex ${className}`}>
             <div className="w-1/2">
@@ -26,6 +30,7 @@ function InputBox({
                     id={amountId}
                     className="outline-none w-full bg-transparent py-1.5"
                     type="number"
+                    onFocus={handleFocus}
                     placeholder="Amount"
                     disabled={amountDisable}
                     value={amount}
