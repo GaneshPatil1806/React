@@ -8,14 +8,14 @@ function App() {
   const [todos,setTodos] = useState([]);
 
   useEffect(()=>{
-    const storedTodo = sessionStorage.getItem('todos');
+    const storedTodo = localStorage.getItem('todos');
     if(storedTodo && storedTodo.length>0){
       setTodos(JSON.parse(storedTodo));
     }
   },[])
 
   useEffect(()=>{
-      sessionStorage.setItem('todos',JSON.stringify(todos));
+      localStorage.setItem('todos',JSON.stringify(todos));
   },[todos])
 
   function addTodo(todo){
