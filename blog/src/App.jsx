@@ -1,11 +1,13 @@
 
 function App() {
 
-  console.log(import.meta.env.REACT_APP_APPWRITE_URL);
-
   return (
     <>
-      <h1>bolg</h1>
+   
+    <div className="bg-blue-500 text-white p-4">
+      This is a Tailwind CSS component.
+    </div>
+
     </>
   )
 }
