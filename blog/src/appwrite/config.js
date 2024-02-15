@@ -1,4 +1,4 @@
-import { Client, ID, Account,Databases,Storage,Query} from "appwrite";
+import { Client, ID, Databases,Storage,Query} from "appwrite";
 import conf from "../conf/conf";
 
 export class Service{
@@ -62,6 +62,67 @@ export class Service{
             console.log('Appwrite service :: deletePost :: error',e);
             return false
         }
+    }
+
+    async getPost(slug){
+        try{
+            await this.databases.getDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                slug,
+            )
+            return true
+        }catch(e){
+            console.log('Appwrite service :: getPost :: error',e);
+            return false
+        }
+    }
+
+    async getPosts(queries = [Query.equal('status','active')]){
+        try{
+            await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                queries,
+            )
+            return true
+        }catch(e){
+            console.log('Appwrite service :: getPost :: error',e);
+            return false
+        }
+    }
+
+    async uploadFile(file){
+        try{
+            return await this.bucket.createFile(
+                conf.appwriteBucketId,
+                ID.unique(),
+                file
+            )
+        }catch(e){
+            console.log('Appwrite service :: uploadFile :: error',e);
+            return false
+        }
+    }
+
+    async deleteFile(fileId){
+        try{
+            await this.bucket.deleteFile(
+                conf.appwriteBucketId,
+                fileId
+            )
+            return true;    
+        }catch(e){
+            console.log('Appwrite service :: deleteFile :: error',e);
+            return false
+        }
+    }
+
+    async getFilePreview(fileId){
+            return this.bucket.getFilePreview(
+            conf.appwriteBucketId,
+            fileId
+        )
     }
 }
 
