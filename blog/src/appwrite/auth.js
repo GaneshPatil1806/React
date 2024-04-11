@@ -19,7 +19,7 @@ class AuthService {
 
             if(userAccount){
                 //call another method
-                return userAccount;
+                return this.login({email,password});
             }else{
                 return null
             }
